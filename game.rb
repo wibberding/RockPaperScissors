@@ -8,7 +8,7 @@ class Game
     @ties = 0
     @game_over = false
     @number_of_rounds = 0
-
+    @rounds_to_play = 50
     @last_winner = " "
     @last_human_choice = " "
     @last_computer_choice = " "
@@ -16,6 +16,7 @@ class Game
 
   #Process move
   def process_move(human_choice)
+
     #Input computer choice
     @computer_choice = computer_choice
 
