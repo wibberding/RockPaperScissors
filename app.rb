@@ -15,17 +15,17 @@ get '/' do
 end
 
 post '/rock' do
-  session["game"].process_move('rock')
+  session["game"].process_move('r')
   redirect "/"
 end
 
 post '/paper' do
-  session["game"].process_move('paper')
+  session["game"].process_move('p')
   redirect "/"
 end
 
 post '/scissors' do
-  session["game"].process_move('scissors')
+  session["game"].process_move('s')
   redirect "/"
 end
 

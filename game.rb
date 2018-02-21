@@ -7,7 +7,7 @@ class Game
     @computer_wins = 0
     @ties = 0
     @game_over = false
-    @number_of_rounds = 50
+    @number_of_rounds = 0
 
     @last_winner = " "
     @last_human_choice = " "
@@ -37,6 +37,8 @@ class Game
     #Save computer choice into array
     @computer_moves << @computer_choice
 
+    #Adds to round count
+    @number_of_rounds = @number_of_rounds + 1
     #update choices and winner
     @last_winner = winner
     @last_human_choice = human_choice
@@ -45,24 +47,24 @@ class Game
 
   #Main AI of the program
   def computer_choice
-    choices =['rock','paper','scissors']
+    choices =['r','p','s']
     choices.sample
   end
 
   def who_wins(human_choice, computer_choice)
     if human_choice == computer_choice
       return "tie"
-    elsif human_choice == "rock" && computer_choice == "scissors"
+    elsif human_choice == "r" && computer_choice == "s"
       return "human"
-    elsif human_choice == "rock" && computer_choice == "paper"
+    elsif human_choice == "r" && computer_choice == "p"
       return "computer"
-    elsif human_choice == "paper" && computer_choice == "scissors"
+    elsif human_choice == "p" && computer_choice == "s"
       return "computer"
-    elsif human_choice == "paper" && computer_choice == "rock"
+    elsif human_choice == "p" && computer_choice == "r"
       return "human"
-    elsif human_choice == "scissors" && computer_choice == "rock"
+    elsif human_choice == "s" && computer_choice == "r"
       return "computer"
-    elsif human_choice == "scissors" && computer_choice == "paper"
+    elsif human_choice == "s" && computer_choice == "p"
       return "human"
     end
   end
@@ -91,5 +93,8 @@ class Game
     @last_winner
   end
 
+  def number_of_rounds
+    @number_of_rounds
+  end
   
 end

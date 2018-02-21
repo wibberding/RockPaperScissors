@@ -10,10 +10,13 @@ img {
 
 .section {
   /*border: 2px solid blue;*/
-  border-bottom: 5px solid black;
-  margin-bottom: 50px;
+  /*border-bottom: 5px solid black;*/
+  margin-bottom: 30px;
 }
 
+.icons {
+  max-width: 100px;
+}
 #header {
   display: flex;
   justify-content: space-between;
