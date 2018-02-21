@@ -10,8 +10,8 @@ class Game
     @number_of_rounds = 0
     @rounds_to_play = 50
     @last_winner = " "
-    @last_human_choice = " "
-    @last_computer_choice = " "
+    @last_human_choice = "r"
+    @last_computer_choice = "r"
   end
 
   #Process move
