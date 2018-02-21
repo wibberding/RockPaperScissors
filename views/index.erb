@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock Paper Scissors</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link rel="stylesheet" href="style/bootstrap.min.css" />
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+  <body>
+  <div class="container">
+
+    <!-- Header and reset -->
+    <div class="row section">
+      <div class="col-sm-8 col-sm-offset-4">
+
+          <h1 id="title">Rock Paper Scissors</h1>
+
+          <form method="post" action="/reset" id="bt">
+              <button type="submit" class="btn btn-primary">Reset Game</button>
+          </form>
+
+      </div>
+    </div>
+
+    <!-- Who won last round -->
+    <div class="row section">
+      <div class="col-sm-4">
+        <p>Human Choice</p>
+        <p><%=@game.last_human_choice%></p>
+      </div>
+      <div class="col-sm-4">
+        <h1>Winner: <%=@game.last_winner%></h1>
+      </div>
+      <div class="col-sm-4">
+        <p>Computer Choice</p>
+        <p><%=@game.last_computer_choice%></p>
+      </div>
+
+    </div>
+
+    <!-- Input buttons -->
+    <div class="row section">
+      <div class="col-sm-1 col-sm-offset-5">
+        <form method="post" action="/rock">
+          <button type="submit" class="btn btn-primary">Rock</button>
+        </form>
+      </div>
+      <div class="col-sm-1">
+        <form method="post" action="/paper">
+          <button type="submit" class="btn btn-primary">Paper</button>
+        </form>
+      </div>
+      <div class="col-sm-1">
+        <form method="post" action="/scissors">
+          <button type="submit" class="btn btn-primary">Scissors</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Totals so far -->
+    <div class="row section">
+      <div class="col-sm-8 col-sm-offset-2">
+        <center><h1>Total</h1></center>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <h4>Human</h4>
+        <h4><%=@game.human_wins%></h4>
+      </div>
+      <div class="col-sm-4">
+        <h4>Ties</h4>
+        <h4><%=@game.ties%></h4>
+      </div>
+      <div class="col-sm-4">
+        <h4>Computer</h4>
+        <h4><%=@game.computer_wins%></h4>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
