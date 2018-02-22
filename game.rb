@@ -8,14 +8,25 @@ class Game
     @ties = 0
     @game_over = false
     @number_of_rounds = 0
-    @rounds_to_play = 50
+    @rounds_to_play = 30
     @last_winner = " "
     @last_human_choice = "r"
     @last_computer_choice = "r"
   end
 
+  #Main AI of the program
+  def computer_choice
+    choices =['r', 'p', 's']
+    choices.sample
+  end
+
   #Process move
   def process_move(human_choice)
+
+    #Check if game is over
+    if (@number_of_rounds + 1) >= @rounds_to_play
+      @game_over = true
+    end
 
     #Input computer choice
     @computer_choice = computer_choice
@@ -24,9 +35,9 @@ class Game
     winner = who_wins(human_choice, @computer_choice)
 
     #Add wins to appropriate column
-      if winner == "human"
+      if winner == "Human"
         @human_wins = @human_wins + 1
-      elsif winner == "computer"
+      elsif winner == "Computer"
         @computer_wins = @computer_wins + 1
       else
         @ties = @ties + 1
@@ -40,36 +51,40 @@ class Game
 
     #Adds to round count
     @number_of_rounds = @number_of_rounds + 1
+
     #update choices and winner
     @last_winner = winner
     @last_human_choice = human_choice
     @last_computer_choice = @computer_choice
   end
 
-  #Main AI of the program
-  def computer_choice
-    choices =['r','p','s']
-    choices.sample
-  end
-
   def who_wins(human_choice, computer_choice)
+
     if human_choice == computer_choice
-      return "tie"
+      return "Tie"
+
     elsif human_choice == "r" && computer_choice == "s"
-      return "human"
+      return "Human"
+
     elsif human_choice == "r" && computer_choice == "p"
-      return "computer"
+      return "Computer"
+
     elsif human_choice == "p" && computer_choice == "s"
-      return "computer"
+      return "Computer"
+
     elsif human_choice == "p" && computer_choice == "r"
-      return "human"
+      return "Human"
+
     elsif human_choice == "s" && computer_choice == "r"
-      return "computer"
+      return "Computer"
+
     elsif human_choice == "s" && computer_choice == "p"
-      return "human"
+      return "Human"
     end
+
   end
 
+  #Accessor methods
   def computer_wins
     @computer_wins
   end
@@ -96,6 +111,14 @@ class Game
 
   def number_of_rounds
     @number_of_rounds
+  end
+
+  def rounds_to_play
+    @rounds_to_play
+  end
+
+  def game_over
+    @game_over
   end
   
 end

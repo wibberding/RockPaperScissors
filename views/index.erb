@@ -13,23 +13,19 @@
     <div class="row section">
       <div class="col-sm-8 offset-sm-2">
 
-          <h1 id="title">Rock Paper Scissors<small> (Round: <%=@game.number_of_rounds%>)</small></h1>
-
-          
-
-          <h2></h2>
-
+          <h1 id="title">Rock Paper Scissors<small> (Round: <%=@game.number_of_rounds%>/<%=@game.rounds_to_play%>)</small></h1>
       </div>
     </div>
 
     <!-- Who won last round -->
     <div class="row section">
-      <div class="col-sm-3">
+      <div class="col-sm-3 offset-sm-2">
         <h2>Human </h2>
         <img class="icons" src="/img/<%=@game.last_human_choice%>.png">
       </div>
       <div class="col-sm-4">
-        <h1>Winner: <%=@game.last_winner%></h1>
+        <h1>Winner:</h1>
+        <h2><%=@game.last_winner%></h2>
       </div>
       <div class="col-sm-3">
         <h2>Computer </h2>
@@ -39,36 +35,43 @@
     </div>
 
     <!-- Input buttons -->
-    <div class="row">
-      <div class="col-sm-12 offset-sm-3">
-        <h2>Make Your Choice</h2>
+    <% unless @game.game_over %>
+      <div class="row">
+        <div class="col-sm-6 offset-sm-5">
+          <h2>Make Your Choice</h2>
+        </div>
       </div>
-    </div>
-    <div class="row section">
-      <div class="col-sm-1 offset-sm-3">
-        <form method="post" action="/rock">
-          <button type="submit" class=""><img src="/img/r.png"></button>
-        </form>
+      <div class="row section">
+        <div class="col-sm-1 offset-sm-5">
+          <form method="post" action="/rock">
+            <button type="submit" class=""><img src="/img/r.png"></button>
+          </form>
+        </div>
+        <div class="col-sm-1">
+          <form method="post" action="/paper">
+            <button type="submit" class=""><img src="/img/p.png"></button>
+          </form>
+        </div>
+        <div class="col-sm-1">
+          <form method="post" action="/scissors">
+            <button type="submit" class=""><img src="/img/s.png"></button>
+          </form>
+        </div>
       </div>
-      <div class="col-sm-1">
-        <form method="post" action="/paper">
-          <button type="submit" class=""><img src="/img/p.png"></button>
-        </form>
+    <% else %>
+      <div class="row">
+        <div class="col-sm-4 offset-sm-5">
+          <h1>Game Over!</h1>
+        </div>
       </div>
-      <div class="col-sm-1">
-        <form method="post" action="/scissors">
-          <button type="submit" class=""><img src="/img/s.png"></button>
-        </form>
-      </div>
-      
-    </div>
+    <% end %>
 
 
 
     <!-- Totals so far -->
 <br><br>
     <div class="row">
-      <div class="col-sm-2 offset-sm-1">
+      <div class="col-sm-2 offset-sm-2">
         <h3><strong>Totals:</strong></h3>
         <form method="post" action="/reset">
             <button type="submit" class="btn btn-primary btn-sm">Reset Game</button>
