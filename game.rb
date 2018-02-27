@@ -15,10 +15,60 @@ class Game
   end
 
   #Main AI of the program
-  def computer_choice
+  def computer_ai_1
     choices =['r', 'p', 's']
     choices.sample
   end
+
+  #Play whatever move the human played last time.
+  def computer_ai_2
+    choice = @human_moves[-1]
+  end
+
+  #Find the average of what the human played and play something that would beat that.
+  def computer_ai_3
+    rock = 0
+    paper = 0
+    scissors = 0
+    most_played = "r"
+    choice = "p"
+
+    # Find which moves have been played the most.
+    
+    @human_moves.each do |move|
+      if move == 'r'
+        rock = rock + 1
+      elsif move == 'p'
+        paper = paper + 1
+      elsif move == 's'
+        scissors = scissors + 1
+      end
+    end
+
+    if rock > paper && rock > scissors
+      most_played = "r"
+    elsif paper > rock && paper > scissors
+      most_played = "p"
+    elsif scissors > paper && scissors > rock 
+      most_played = "s"
+    else
+      #choose random if they tie
+      choices =['r', 'p', 's']
+      most_played = choices.sample
+    end
+
+    #play the hand that beats the human move.
+    if most_played == 'r'
+      choice = 'p'
+    elsif most_played == 'p'
+      choice = 's'
+    elsif most_played == 's'
+      choice = 'r'
+    end
+
+    return choice
+  end
+
 
   #Process move
   def process_move(human_choice)
@@ -29,7 +79,7 @@ class Game
     end
 
     #Input computer choice
-    @computer_choice = computer_choice
+    @computer_choice = computer_ai_1
 
     #Compare choices and determine winner
     winner = who_wins(human_choice, @computer_choice)
